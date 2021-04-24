@@ -104,8 +104,8 @@ function generateDefaultOptions() {
     "override-referer": true,
     "left-click-action": "same-tab",
     "ctrl-left-click-action": "new-foreground-tab",
-    "shift-left-click-action": "new-background-tab",
-    "ctrl-shift-left-click-action": "new-foreground-window",
+    "shift-left-click-action": "new-foreground-window",
+    "ctrl-shift-left-click-action": "new-background-tab",
     "middle-click-action": "new-foreground-tab"
   };
 }
