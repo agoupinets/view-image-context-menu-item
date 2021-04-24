@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    div.section-option { margin-bottom: 1em; }
+    div.section-submission { margin-top: 1em; }
+    label.block-label { display: block; margin-bottom: 0.2em; }
+    label {font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<form class="panel-section panel-section-formElements" id="options">
+  <div class="browser-style section-option">
+    <input type="checkbox" id="show-view-image" checked="checked" />
+    <label for="show-view-image">Show View Image</label>
+  </div>
+  <div class="browser-style section-option">
+    <input type="checkbox" id="show-view-video" checked="checked" />
+    <label for="show-view-video">Show View Video</label>
+  </div>
+  <div class="browser-style section-option">
+    <input type="checkbox" id="override-referer" checked="checked" />
+    <label for="override-referer">Override Referer header in requests</label>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">Left-Click</label>
+    <select class="browser-style" id="left-click-action">
+      <option value="same-tab">Open in same tab</option>
+      <option value="new-foreground-tab">Open in new foreground tab</option>
+      <option value="new-background-tab">Open in new background tab</option>
+      <option value="new-foreground-window">Open in new window</option>
+      <option value="nothing">Do nothing</option>
+    </select>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">Ctrl + Left-Click</label>
+    <select class="browser-style" id="ctrl-left-click-action">
+      <option value="same-tab">Open in same tab</option>
+      <option value="new-foreground-tab">Open in new foreground tab</option>
+      <option value="new-background-tab">Open in new background tab</option>
+      <option value="new-foreground-window">Open in new window</option>
+      <option value="nothing">Do nothing</option>
+    </select>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">Shift + Left-Click</label>
+    <select class="browser-style" id="shift-left-click-action">
+      <option value="same-tab">Open in same tab</option>
+      <option value="new-foreground-tab">Open in new foreground tab</option>
+      <option value="new-background-tab">Open in new background tab</option>
+      <option value="new-foreground-window">Open in new window</option>
+      <option value="nothing">Do nothing</option>
+    </select>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">Ctrl + Shift + Left-Click</label>
+    <select class="browser-style" id="ctrl-shift-left-click-action">
+      <option value="same-tab">Open in same tab</option>
+      <option value="new-foreground-tab">Open in new foreground tab</option>
+      <option value="new-background-tab">Open in new background tab</option>
+      <option value="new-foreground-window">Open in new window</option>
+      <option value="nothing">Do nothing</option>
+    </select>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">Middle-Click</label>
+    <select class="browser-style" id="middle-click-action">
+      <option value="same-tab">Open in same tab</option>
+      <option value="new-foreground-tab">Open in new foreground tab</option>
+      <option value="new-background-tab">Open in new background tab</option>
+      <option value="new-foreground-window">Open in new window</option>
+      <option value="nothing">Do nothing</option>
+    </select>
+  </div>
+  <div class="panel-section-separator"></div>
+  <div class="browser-style section-submission">
+    <button class="browser-style default" type="submit">Save</button>
+  </div>
+</form>
+
+<script src="options.js"></script>
+
+</body>
+</html>
