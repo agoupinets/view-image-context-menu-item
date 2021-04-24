@@ -4,14 +4,20 @@ browser.menus.create({
   title: "View I&mage"
 });
 
+browser.menus.create({
+  id: "view-video-context-menu-item",
+  contexts: ["video"],
+  title: "View Vid&eo"
+});
+
 browser.menus.onClicked.addListener(function(info, tab) {
-  if (info.menuItemId != "view-image-context-menu-item") {
+  if (info.menuItemId != "view-image-context-menu-item" && info.menuItemId != "view-video-context-menu-item") {
     return;
   }
 
   const isMiddleClick = info.button === 1;
-  const isShiftModifier = info.modifiers.indexOf("Shift") > -1
-  const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1
+  const isShiftModifier = info.modifiers.indexOf("Shift") > -1;
+  const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1;
 
   function openInSameTab(info, tab) {
     browser.tabs.update(tab.id, { url: info.srcUrl });
