@@ -19,20 +19,70 @@ browser.menus.onClicked.addListener(function(info, tab) {
   const isShiftModifier = info.modifiers.indexOf("Shift") > -1;
   const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1;
 
+  function getRefererFromTab(tab) {
+    return (tab.url.match(/^[^\/]+:\/\/[^\/]+\//g) || [null])[0];
+  }
+
+  function interceptRequestAndSetReferrer(destinationUrl, refererUrl) {
+    const listener = function(event) {
+      let asyncRewrite = new Promise((resolve, reject) => {
+        let existingRefererHeader = null;
+        for (let header of event.requestHeaders) {
+          if (header.name.toLowerCase() === "referer") {
+            existingRefererHeader = header;
+            break;
+          }
+        }
+
+        if(existingRefererHeader != null) {
+          existingRefererHeader.value = refererUrl;
+        } else {
+          event.requestHeaders.push({ name: "Referer", value: refererUrl });
+        }
+
+        resolve({requestHeaders: event.requestHeaders});
+      });
+
+      browser.webRequest.onBeforeSendHeaders.removeListener(listener);
+      return asyncRewrite;
+    };
+
+    browser.webRequest.onBeforeSendHeaders.addListener(
+      listener,
+      { urls: [destinationUrl] },
+      ["blocking", "requestHeaders"]
+    );
+  }
+
+  function prepareForRequest(info, tab) {
+    const sourceTabId = tab.id;
+    const destinationUrl = info.srcUrl;
+    const referrerUrl = getRefererFromTab(tab);
+    interceptRequestAndSetReferrer(destinationUrl, referrerUrl);
+    return {
+      sourceTabId: sourceTabId,
+      destinationUrl: destinationUrl
+    };
+  }
+
   function openInSameTab(info, tab) {
-    browser.tabs.update(tab.id, { url: info.srcUrl });
+    const preparationData = prepareForRequest(info, tab);
+    browser.tabs.update(preparationData.sourceTabId, { url: preparationData.destinationUrl });
   }
 
   function openInNewForegroundTab(info, tab) {
-    browser.tabs.create({ url: info.srcUrl, openerTabId: tab.id, active: true });
+    const preparationData = prepareForRequest(info, tab);
+    browser.tabs.create({ url: preparationData.destinationUrl, openerTabId: preparationData.sourceTabId, active: true });
   }
 
   function openInNewBackgroundTab(info, tab) {
-    browser.tabs.create({ url: info.srcUrl, openerTabId: tab.id, active: false });
+    const preparationData = prepareForRequest(info, tab);
+    browser.tabs.create({ url: preparationData.destinationUrl, openerTabId: preparationData.sourceTabId, active: false });
   }
 
   function openInNewWindow(info, tab) {
-    browser.windows.create({ url: info.srcUrl, focused: true });
+    const preparationData = prepareForRequest(info, tab);
+    browser.windows.create({ url: preparationData.destinationUrl, focused: true })
   }
 
   if (isMiddleClick) {
