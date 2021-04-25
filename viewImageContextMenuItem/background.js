@@ -1,3 +1,14 @@
+window.DEFAULT_OPTIONS = Object.freeze({
+    "show-view-image": true,
+    "show-view-video": true,
+    "override-referer": true,
+    "left-click-action": "same-tab",
+    "ctrl-left-click-action": "new-foreground-tab",
+    "shift-left-click-action": "new-foreground-window",
+    "ctrl-shift-left-click-action": "new-background-tab",
+    "middle-click-action": "new-background-tab"
+  });
+
 function createMenuItems() {
   browser.menus.create({
     id: "view-image-context-menu-item",
@@ -97,18 +108,6 @@ function handleContextMenuItemClick(info, tab) {
   doAction(info, tab, actionType);
 }
 
-function generateDefaultOptions() {
-  return {
-    "show-view-image": true,
-    "show-view-video": true,
-    "override-referer": true,
-    "left-click-action": "same-tab",
-    "ctrl-left-click-action": "new-foreground-tab",
-    "shift-left-click-action": "new-foreground-window",
-    "ctrl-shift-left-click-action": "new-background-tab",
-    "middle-click-action": "new-foreground-tab"
-  };
-}
 
 function loadOptionsFromStorage() {
   browser.storage.local.get("options")
@@ -139,7 +138,7 @@ function processOptions(options) {
 }
 
 createMenuItems();
-processOptions(generateDefaultOptions());
+processOptions(window.DEFAULT_OPTIONS);
 loadOptionsFromStorage();
 browser.menus.onClicked.addListener(handleContextMenuItemClick);
 browser.storage.onChanged.addListener(handleStorageChange);

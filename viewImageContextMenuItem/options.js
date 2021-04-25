@@ -1,14 +1,5 @@
-function generateDefaultOptions() {
-  return {
-    "show-view-image": true,
-    "show-view-video": true,
-    "override-referer": true,
-    "left-click-action": "same-tab",
-    "ctrl-left-click-action": "new-foreground-tab",
-    "shift-left-click-action": "new-foreground-window",
-    "ctrl-shift-left-click-action": "new-background-tab",
-    "middle-click-action": "new-foreground-tab"
-  };
+function getDefaultOptions() {
+  return browser.extension.getBackgroundPage().DEFAULT_OPTIONS;
 }
 
 function loadOptions() {
@@ -17,7 +8,7 @@ function loadOptions() {
   }
 
   browser.storage.local.get("options").then((res) => {
-    const options = res.options || generateDefaultOptions();
+    const options = res.options || getDefaultOptions();
     document.querySelector("#show-view-image").checked = options["show-view-image"];
     document.querySelector("#show-view-video").checked = options["show-view-video"];
     document.querySelector("#override-referer").checked = options["override-referer"];
