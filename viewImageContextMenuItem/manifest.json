@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "View Image Context Menu Item",
-  "version": "2.2",
+  "version": "2.3",
   "description": "Adds View Image and View Video to the context menu",
   "icons": {
     "48": "icons/viewImageContextMenuItem-48.png"
@@ -13,5 +13,5 @@
     "page": "options.html",
     "browser_style": true
   },
-  "permissions": ["menus", "*://*/*", "webRequest", "webRequestBlocking", "storage"]
+  "permissions": ["menus", "<all_urls>", "webRequest", "webRequestBlocking", "storage"]
 }
