@@ -168,8 +168,10 @@ function processViewActionLocalFile(info, tab, actionType) {
         break;
       case "new-foreground-window":
         browser.tabs.duplicate(tab.id, { active: false })
-          .then(function (newTab) { browser.windows.create({ tabId: newTab.id, focused: true }); })
-          .then(function (newTab) { createListenerToRedirectTabToUrl(newTab.id, destinationUrl); });
+          .then(function (newTab) { 
+            browser.windows.create({ tabId: newTab.id, focused: true });
+            createListenerToRedirectTabToUrl(newTab.id, destinationUrl);
+          });
         break;
     }
   }
