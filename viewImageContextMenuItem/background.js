@@ -28,23 +28,40 @@ function handleContextMenuItemClick(info, tab) {
     return;
   }
 
-  const isMiddleClick = info.button === 1;
-  const isShiftModifier = info.modifiers.indexOf("Shift") > -1;
-  const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1;
-  let actionTypeOption;
-  if (isMiddleClick) {
-    actionTypeOption = "middle-click-action";
-  } else if(isShiftModifier && isCtrlModifier) {
-    actionTypeOption = "ctrl-shift-left-click-action";
-  } else if(isShiftModifier) {
-    actionTypeOption = "shift-left-click-action";
-  } else if(isCtrlModifier) {
-    actionTypeOption = "ctrl-left-click-action";
-  } else {
-    actionTypeOption = "left-click-action";
+  function getActionOptionType(info) {
+    const isMiddleClick = info.button === 1;
+    const isShiftModifier = info.modifiers.indexOf("Shift") > -1;
+    const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1;
+    let actionTypeOption;
+    if (isMiddleClick) {
+      return "middle-click-action";
+    } else if(isShiftModifier && isCtrlModifier) {
+      return "ctrl-shift-left-click-action";
+    } else if(isShiftModifier) {
+      return "shift-left-click-action";
+    } else if(isCtrlModifier) {
+      return "ctrl-left-click-action";
+    } else {
+      return "left-click-action";
+    }
   }
-  const actionType = window.options[actionTypeOption];
 
+  function isFileScheme(url) {
+    return url.match(/^file:\/\//gi) !== null;
+  }
+
+  const actionType = window.options[getActionOptionType(info)];
+  const isLocalFileLink = isFileScheme(info.pageUrl) && isFileScheme(tab.url);
+
+  if(isLocalFileLink) {
+    processViewActionLocalFile(info, tab, actionType);
+  } else {
+    processViewAction(info, tab, actionType);
+  }
+
+}
+
+function processViewAction(info, tab, actionType) {
   function getRefererFromInfo(info) {
     return (info.pageUrl.match(/^[^\/]+:\/\/[^\/]+\//g) || [null])[0];
   }
@@ -108,6 +125,57 @@ function handleContextMenuItemClick(info, tab) {
   doAction(info, tab, actionType);
 }
 
+// Firefox security policy blocks most file:// actions, so this code
+// jumps through a lot of code to get around it
+function processViewActionLocalFile(info, tab, actionType) {
+  function redirectTabToUrl(tabId, url) {
+    browser.tabs.executeScript(
+      tabId,
+      {
+        code: "(function () {"
+          + "let _nav = document.createElement('a');"
+          + "_nav.setAttribute('href', '" + url + "');"
+          + "_nav.click();"
+          + "}).call();"
+      }
+    );
+  }
+
+  function createListenerToRedirectTabToUrl(tabId, url){
+    const listener = function (listenerTabId, changeInfo, tabInfo) {
+      if(listenerTabId !== tabId || changeInfo.status !== "complete") {
+        return;
+      }
+      browser.tabs.onUpdated.removeListener(listener);
+      redirectTabToUrl(tabId, url);
+    };
+    browser.tabs.onUpdated.addListener(listener);
+  }
+
+  function doAction(info, tab, actionType){
+    const destinationUrl = info.srcUrl;
+    switch(actionType) {
+      case "same-tab":
+        redirectTabToUrl(tab.id, destinationUrl);
+        break;
+      case "new-foreground-tab":
+        browser.tabs.duplicate(tab.id, { active: true })
+          .then(function (newTab) { createListenerToRedirectTabToUrl(newTab.id, destinationUrl); });
+        break;
+      case "new-background-tab":
+        browser.tabs.duplicate(tab.id, { active: false })
+          .then(function (newTab) { createListenerToRedirectTabToUrl(newTab.id, destinationUrl); });
+        break;
+      case "new-foreground-window":
+        browser.tabs.duplicate(tab.id, { active: false })
+          .then(function (newTab) { browser.windows.create({ tabId: newTab.id, focused: true }); })
+          .then(function (newTab) { createListenerToRedirectTabToUrl(newTab.id, destinationUrl); });
+        break;
+    }
+  }
+
+  doAction(info, tab, actionType);
+}
 
 function loadOptionsFromStorage() {
   browser.storage.local.get("options")
