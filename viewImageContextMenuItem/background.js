@@ -9,6 +9,21 @@ window.DEFAULT_OPTIONS = Object.freeze({
     "middle-click-action": "new-background-tab"
   });
 
+function loadOptionsFromStorage() {
+  return browser.storage.local.get("options")
+    .then((resolve, reject) => {
+      const options = resolve.options || {};
+      return new Promise((resolve, reject) => {
+        Object.keys(window.DEFAULT_OPTIONS).forEach((key) => {
+          if(!options.hasOwnProperty(key)) {
+            options[key] = window.DEFAULT_OPTIONS[key];
+          }
+        });
+        resolve(options);
+      });
+    });
+}
+
 function createMenuItems() {
   browser.menus.create({
     id: "view-image-context-menu-item",
@@ -21,6 +36,19 @@ function createMenuItems() {
     contexts: ["video"],
     title: "View Vid&eo"
   });
+}
+
+function handleContextMenuShow(info, tab) {
+  const isMenuItemRedundant = info.pageUrl === info.srcUrl;
+  browser.menus.update(
+    "view-image-context-menu-item",
+    { visible: !isMenuItemRedundant && window.options["show-view-image"] }
+  );
+  browser.menus.update(
+    "view-video-context-menu-item",
+    { visible: !isMenuItemRedundant && window.options["show-view-video"] }
+  );
+  browser.menus.refresh();
 }
 
 function handleContextMenuItemClick(info, tab) {
@@ -126,7 +154,7 @@ function processViewAction(info, tab, actionType) {
 }
 
 // Firefox security policy blocks most file:// actions, so this code
-// jumps through a lot of code to get around it
+// jumps through a lot of hoops to get around it
 function processViewActionLocalFile(info, tab, actionType) {
   function redirectTabToUrl(tabId, url) {
     browser.tabs.executeScript(
@@ -179,15 +207,6 @@ function processViewActionLocalFile(info, tab, actionType) {
   doAction(info, tab, actionType);
 }
 
-function loadOptionsFromStorage() {
-  browser.storage.local.get("options")
-    .then((res) => {
-      if(res.options) {
-        processOptions(res.options);
-      }
-    });
-}
-
 function handleStorageChange(changes, areaName){
   if(areaName !== "local" || !changes.options) {
     return;
@@ -197,18 +216,11 @@ function handleStorageChange(changes, areaName){
 
 function processOptions(options) {
   window.options = options;
-  browser.menus.update(
-    "view-image-context-menu-item",
-    { visible: window.options["show-view-image"] }
-  );
-  browser.menus.update(
-    "view-video-context-menu-item",
-    { visible: window.options["show-view-video"] }
-  );
 }
 
 createMenuItems();
 processOptions(window.DEFAULT_OPTIONS);
-loadOptionsFromStorage();
+loadOptionsFromStorage().then((options) => { processOptions(options); });
+browser.menus.onShown.addListener(handleContextMenuShow);
 browser.menus.onClicked.addListener(handleContextMenuItemClick);
 browser.storage.onChanged.addListener(handleStorageChange);
