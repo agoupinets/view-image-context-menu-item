@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "View Image Context Menu Item",
-  "version": "2.3.1",
+  "version": "2.4",
   "description": "Adds View Image and View Video to the context menu",
   "icons": {
     "48": "icons/viewImageContextMenuItem-48.png"

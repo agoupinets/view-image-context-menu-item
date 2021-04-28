@@ -1,14 +1,9 @@
-function getDefaultOptions() {
-  return browser.extension.getBackgroundPage().DEFAULT_OPTIONS;
-}
-
 function loadOptions() {
   function setSelectedOption(selectId, value){
     document.querySelector(selectId + " > option[value='" + value + "']").selected = true;
   }
 
-  browser.storage.local.get("options").then((res) => {
-    const options = res.options || getDefaultOptions();
+  browser.extension.getBackgroundPage().loadOptionsFromStorage().then((options) => {
     document.querySelector("#show-view-image").checked = options["show-view-image"];
     document.querySelector("#show-view-video").checked = options["show-view-video"];
     document.querySelector("#override-referer").checked = options["override-referer"];
