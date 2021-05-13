@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Προβολή ει&κόνας",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Προ&βολή βίντεο",
+    "description": "Title of View Video context menu item."
+  }
+}

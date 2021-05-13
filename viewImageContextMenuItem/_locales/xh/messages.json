@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Jonga &umfanekiso",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "J&onga ividiyo",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Дидани тасвир",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&Дидани видео",
+    "description": "Title of View Video context menu item."
+  }
+}

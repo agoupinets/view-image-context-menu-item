@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Zo&braziť obrázok",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Zo&braziť video",
+    "description": "Title of View Video context menu item."
+  }
+}

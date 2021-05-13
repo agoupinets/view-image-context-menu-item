@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "प्रतिमा पळयात (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "व्हिडिओ दृ&श्य करचो",
+    "description": "Title of View Video context menu item."
+  }
+}

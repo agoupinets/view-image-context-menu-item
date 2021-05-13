@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ရုပ်ပုံကို ဖွင့်ကြည့်ရန် (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ဗီဒီယိုကို ဖွင့်ကြည့်ရန် (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

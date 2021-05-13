@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "T&ingnan ang Larawan",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "T&ingnan ang Video",
+    "description": "Title of View Video context menu item."
+  }
+}

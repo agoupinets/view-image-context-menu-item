@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ಚಿತ್ರವನ್ನು ನೋಡು (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ವೀಡಿಯೋ ಅನ್ನು ನೋಡಿ (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Titz'et &Wachib'äl",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&Titz'et silowachib'äl",
+    "description": "Title of View Video context menu item."
+  }
+}

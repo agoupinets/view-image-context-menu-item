@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Bheka &isithombe",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&Buka ividiyo",
+    "description": "Title of View Video context menu item."
+  }
+}

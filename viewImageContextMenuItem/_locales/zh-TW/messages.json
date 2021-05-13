@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "檢視圖片 (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "播放視訊檔案 (&I)",
+    "description": "Title of View Video context menu item."
+  }
+}

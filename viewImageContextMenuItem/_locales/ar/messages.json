@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "اعرض ال&صورة",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "اعرض ال&فديو",
+    "description": "Title of View Video context menu item."
+  }
+}

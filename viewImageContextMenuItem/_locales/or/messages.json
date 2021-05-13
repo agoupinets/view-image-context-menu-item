@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ପ୍ରତିଛବି ଦେଖନ୍ତୁ (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ଭିଡ଼ିଓ ଦେଖନ୍ତୁ (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

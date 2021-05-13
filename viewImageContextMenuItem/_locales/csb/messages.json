@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Wëskrzëni òbrôzk",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Wës&krzëni wideò",
+    "description": "Title of View Video context menu item."
+  }
+}

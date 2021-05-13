@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Kune'ya tutu nátava (&i)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Kune´ya tutu kana (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

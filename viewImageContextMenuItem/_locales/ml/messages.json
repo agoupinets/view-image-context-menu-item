@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ചിത്രം കാണുക (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "വീഡിയോ കാണുക (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

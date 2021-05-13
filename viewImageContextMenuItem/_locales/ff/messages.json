@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Hollu &Natal",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "H&ollu Widewoo",
+    "description": "Title of View Video context menu item."
+  }
+}

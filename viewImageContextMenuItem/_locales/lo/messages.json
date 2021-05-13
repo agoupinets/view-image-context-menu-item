@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ເບິ່ງຮູບພາບ (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ເບິ່ງວີດີໂອ (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

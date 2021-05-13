@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Rasmn&i ko‘rish",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "V&ideoni koʻrish",
+    "description": "Title of View Video context menu item."
+  }
+}

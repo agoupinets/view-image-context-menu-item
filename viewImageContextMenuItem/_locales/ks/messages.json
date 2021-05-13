@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "وچھیو تئ ہٲویو (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ویڈیو وچھیو (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

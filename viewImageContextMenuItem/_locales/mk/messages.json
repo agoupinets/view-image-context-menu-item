@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Прика&жи ја сликата",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Пр&икажи го видеото",
+    "description": "Title of View Video context menu item."
+  }
+}

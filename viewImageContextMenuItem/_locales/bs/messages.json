@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Pr&ikaži sliku",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Pr&ikaži video",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Rod&yti paveikslą",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Rod&yti vaizdo įrašą",
+    "description": "Title of View Video context menu item."
+  }
+}

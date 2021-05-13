@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "O&fbylding besjen",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "F&ideo besjen",
+    "description": "Title of View Video context menu item."
+  }
+}

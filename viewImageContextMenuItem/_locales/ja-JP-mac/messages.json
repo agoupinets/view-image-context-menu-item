@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "画像だけを表示 (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "動画だけを表示 (&I)",
+    "description": "Title of View Video context menu item."
+  }
+}
