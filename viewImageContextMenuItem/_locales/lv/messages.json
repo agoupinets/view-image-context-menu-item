@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Ska&tīt attēlu",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Skatīt v&ideo",
+    "description": "Title of View Video context menu item."
+  }
+}

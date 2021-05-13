@@ -28,13 +28,13 @@ function createMenuItems() {
   browser.menus.create({
     id: "view-image-context-menu-item",
     contexts: ["image"],
-    title: "View I&mage"
+    title: browser.i18n.getMessage("menuItemViewImage")
   });
 
   browser.menus.create({
     id: "view-video-context-menu-item",
     contexts: ["video"],
-    title: "View Vid&eo"
+    title: browser.i18n.getMessage("menuItemViewVideo")
   });
 }
 

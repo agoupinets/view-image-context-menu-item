@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "छवि देखू (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "वीडियो देखू (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

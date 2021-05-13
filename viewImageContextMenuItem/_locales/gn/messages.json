@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Mba’era’ãnga jehecha (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Ta’ãngamý&i jehecha",
+    "description": "Title of View Video context menu item."
+  }
+}

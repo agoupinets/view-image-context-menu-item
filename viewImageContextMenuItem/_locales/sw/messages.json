@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Angalia &Picha",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "A&ngalia Video",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Ойууну арыйыы",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Видео&ну арый",
+    "description": "Title of View Video context menu item."
+  }
+}

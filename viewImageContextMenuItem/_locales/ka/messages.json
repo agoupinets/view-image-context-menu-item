@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&სურათის ნახვა",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&ვიდეოს ნახვა",
+    "description": "Title of View Video context menu item."
+  }
+}

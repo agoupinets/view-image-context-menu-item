@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Pokaż obraz",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Po&każ wideo",
+    "description": "Title of View Video context menu item."
+  }
+}

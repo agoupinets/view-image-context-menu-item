@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "이미지 보기 (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "동영상 보기 (&I)",
+    "description": "Title of View Video context menu item."
+  }
+}

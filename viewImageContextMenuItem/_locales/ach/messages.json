@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Nen &Cal",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "N&en Vidio",
+    "description": "Title of View Video context menu item."
+  }
+}

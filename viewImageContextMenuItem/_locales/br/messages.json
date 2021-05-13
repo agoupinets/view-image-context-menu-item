@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Gwelout ar &skeudenn",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Gwelout ar v&ideo",
+    "description": "Title of View Video context menu item."
+  }
+}

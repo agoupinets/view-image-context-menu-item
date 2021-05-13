@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Пра&глядзець выяву",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Пра&гледзець відэа",
+    "description": "Title of View Video context menu item."
+  }
+}

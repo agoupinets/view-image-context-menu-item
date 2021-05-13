@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "படத்தைக் காட்டு (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "வீடியோவை காட்டு (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

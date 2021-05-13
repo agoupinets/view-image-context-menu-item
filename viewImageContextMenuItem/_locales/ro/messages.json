@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Vez&i imaginea",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Vez&i videoclipul",
+    "description": "Title of View Video context menu item."
+  }
+}

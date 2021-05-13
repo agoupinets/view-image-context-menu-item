@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Su&retke Baq",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&Videoğa Baq",
+    "description": "Title of View Video context menu item."
+  }
+}

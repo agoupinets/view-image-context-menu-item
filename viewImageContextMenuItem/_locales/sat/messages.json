@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "चिता़र ञेल में . (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "विडियो ञेंल मे (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

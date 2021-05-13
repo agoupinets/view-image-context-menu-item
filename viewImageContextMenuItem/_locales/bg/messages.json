@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Пре&глед на изображение",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Преглед на &видео",
+    "description": "Title of View Video context menu item."
+  }
+}

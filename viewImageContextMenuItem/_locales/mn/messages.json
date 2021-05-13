@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Зургийг харах",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "&Видеог харах",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "وێنە &پیشان دە",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ڤیدیۆ &پیشان بدە",
+    "description": "Title of View Video context menu item."
+  }
+}

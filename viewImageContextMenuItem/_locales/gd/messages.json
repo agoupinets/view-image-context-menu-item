@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Seall an dealbh 'na a&onar",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Co&imhead air video",
+    "description": "Title of View Video context menu item."
+  }
+}

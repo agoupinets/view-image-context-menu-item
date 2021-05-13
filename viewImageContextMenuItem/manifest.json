@@ -1,9 +1,11 @@
 {
   "manifest_version": 2,
   "name": "View Image Context Menu Item",
-  "version": "2.4",
+  "version": "3.0",
   "description": "Adds View Image and View Video to the context menu",
+  "default_locale": "en-CA",
   "icons": {
+    "64": "icons/viewImageContextMenuItem-64.png",
     "48": "icons/viewImageContextMenuItem-48.png"
   },
   "background": {

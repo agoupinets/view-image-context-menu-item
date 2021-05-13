@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Vaa&ta pilti",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Vaata v&ideot",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "मुसुखाखौ नाय (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "भिडिअखौ नाइ (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

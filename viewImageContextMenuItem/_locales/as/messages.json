@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "ছবি দৰ্শন কৰক (&I)",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "ভিডিঅ' দৰ্শন কৰক (&i)",
+    "description": "Title of View Video context menu item."
+  }
+}

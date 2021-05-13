@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Hwɛ Mfon&in",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Hwɛ V&ideo",
+    "description": "Title of View Video context menu item."
+  }
+}

@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "Thegn &pisanxi's",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Kẽsehn kutx&ihnxi's thegn",
+    "description": "Title of View Video context menu item."
+  }
+}

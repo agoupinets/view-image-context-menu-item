@@ -1,0 +1,10 @@
+﻿{
+  "menuItemViewImage": {
+    "message": "&Mbwíʔ món ré",
+    "description": "Title of View Image context menu item."
+  },
+  "menuItemViewVideo": {
+    "message": "Güi &kue",
+    "description": "Title of View Video context menu item."
+  }
+}
