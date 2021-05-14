@@ -12,10 +12,17 @@ function loadOptions() {
     setSelectedOption("#shift-left-click-action", options["shift-left-click-action"]);
     setSelectedOption("#ctrl-shift-left-click-action", options["ctrl-shift-left-click-action"]);
     setSelectedOption("#left-click-action", options["left-click-action"]);
+    document.querySelector("#action-key-view-image").value = options["action-key-view-image"];
+    document.querySelector("#action-key-view-video").value = options["action-key-view-video"];
   }); 
 }
 
 function saveOptions(event) {
+  function cleanActionKey(rawValue) {
+    if(!rawValue || rawValue.trim().length === 0) return null;
+    return rawValue.trim().charAt(0);
+  }
+
   const options = {
     "show-view-image": document.querySelector("#show-view-image").checked,
     "show-view-video": document.querySelector("#show-view-video").checked,
@@ -24,7 +31,9 @@ function saveOptions(event) {
     "ctrl-left-click-action": document.querySelector("#ctrl-left-click-action").value,
     "shift-left-click-action": document.querySelector("#shift-left-click-action").value,
     "ctrl-shift-left-click-action": document.querySelector("#ctrl-shift-left-click-action").value,
-    "middle-click-action": document.querySelector("#middle-click-action").value
+    "middle-click-action": document.querySelector("#middle-click-action").value,
+    "action-key-view-image": cleanActionKey(document.querySelector("#action-key-view-image").value),
+    "action-key-view-video": cleanActionKey(document.querySelector("#action-key-view-video").value)
   };
 
   browser.storage.local.set({options: options});
