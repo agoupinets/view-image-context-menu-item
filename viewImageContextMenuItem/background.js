@@ -6,7 +6,9 @@ window.DEFAULT_OPTIONS = Object.freeze({
     "ctrl-left-click-action": "new-foreground-tab",
     "shift-left-click-action": "new-foreground-window",
     "ctrl-shift-left-click-action": "new-background-tab",
-    "middle-click-action": "new-background-tab"
+    "middle-click-action": "new-background-tab",
+    "action-key-view-image": null,
+    "action-key-view-video": null
   });
 
 function loadOptionsFromStorage() {
@@ -38,15 +40,33 @@ function createMenuItems() {
   });
 }
 
+function applyActionKeyToMenuItemTitle(defaultMenuItemTitle, actionKey){
+  if (!actionKey) return defaultMenuItemTitle;
+  let menuItemTitle = defaultMenuItemTitle.replace(/ ?\(\&.\)&/g, "").replace(/\&/g, "");
+  const actionKeyIndex = menuItemTitle.toLowerCase().indexOf(actionKey.toLowerCase());
+  if (actionKeyIndex === -1) {
+    menuItemTitle += " (&" + actionKey + ")";
+  } else {
+    menuItemTitle = menuItemTitle.slice(0, actionKeyIndex) + "&" + menuItemTitle.slice(actionKeyIndex);
+  }
+  return menuItemTitle;
+}
+
 function handleContextMenuShow(info, tab) {
   const isMenuItemRedundant = info.pageUrl === info.srcUrl;
   browser.menus.update(
     "view-image-context-menu-item",
-    { visible: !isMenuItemRedundant && window.options["show-view-image"] }
+    {
+      visible: !isMenuItemRedundant && window.options["show-view-image"],
+      title: applyActionKeyToMenuItemTitle(browser.i18n.getMessage("menuItemViewImage"), window.options["action-key-view-image"])
+    }
   );
   browser.menus.update(
     "view-video-context-menu-item",
-    { visible: !isMenuItemRedundant && window.options["show-view-video"] }
+    {
+      visible: !isMenuItemRedundant && window.options["show-view-video"],
+      title: applyActionKeyToMenuItemTitle(browser.i18n.getMessage("menuItemViewVideo"), window.options["action-key-view-video"])
+    }
   );
   browser.menus.refresh();
 }
