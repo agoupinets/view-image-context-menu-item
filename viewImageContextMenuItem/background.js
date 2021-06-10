@@ -1,4 +1,5 @@
 window.DEFAULT_OPTIONS = Object.freeze({
+    "show-view-audio": true,
     "show-view-image": true,
     "show-view-video": true,
     "override-referer": true,
@@ -7,6 +8,7 @@ window.DEFAULT_OPTIONS = Object.freeze({
     "shift-left-click-action": "new-foreground-window",
     "ctrl-shift-left-click-action": "new-background-tab",
     "middle-click-action": "new-background-tab",
+    "action-key-view-audio": null,
     "action-key-view-image": null,
     "action-key-view-video": null
   });
@@ -27,6 +29,12 @@ function loadOptionsFromStorage() {
 }
 
 function createMenuItems() {
+  browser.menus.create({
+    id: "view-audio-context-menu-item",
+    contexts: ["audio"],
+    title: browser.i18n.getMessage("menuItemViewAudio")
+  });
+
   browser.menus.create({
     id: "view-image-context-menu-item",
     contexts: ["image"],
@@ -55,6 +63,13 @@ function applyActionKeyToMenuItemTitle(defaultMenuItemTitle, actionKey){
 function handleContextMenuShow(info, tab) {
   const isMenuItemRedundant = info.pageUrl === info.srcUrl;
   browser.menus.update(
+    "view-audio-context-menu-item",
+    {
+      visible: !isMenuItemRedundant && window.options["show-view-audio"],
+      title: applyActionKeyToMenuItemTitle(browser.i18n.getMessage("menuItemViewAudio"), window.options["action-key-view-audio"])
+    }
+  );
+  browser.menus.update(
     "view-image-context-menu-item",
     {
       visible: !isMenuItemRedundant && window.options["show-view-image"],
@@ -72,7 +87,9 @@ function handleContextMenuShow(info, tab) {
 }
 
 function handleContextMenuItemClick(info, tab) {
-  if (info.menuItemId != "view-image-context-menu-item" && info.menuItemId != "view-video-context-menu-item") {
+  if (info.menuItemId != "view-audio-context-menu-item" &&
+      info.menuItemId != "view-image-context-menu-item" &&
+      info.menuItemId != "view-video-context-menu-item") {
     return;
   }
 

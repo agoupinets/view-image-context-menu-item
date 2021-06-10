@@ -1,4 +1,8 @@
 ﻿{
+  "menuItemViewAudio": {
+    "message": "View A&udio",
+    "description": "Title of View Audio context menu item."
+  },
   "menuItemViewImage": {
     "message": "View I&mage",
     "description": "Title of View Image context menu item."
