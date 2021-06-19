@@ -26,7 +26,7 @@ function saveOptions(event) {
   }
 
   const options = {
-    "show-view-image": document.querySelector("#show-view-audio").checked,
+    "show-view-audio": document.querySelector("#show-view-audio").checked,
     "show-view-image": document.querySelector("#show-view-image").checked,
     "show-view-video": document.querySelector("#show-view-video").checked,
     "override-referer": document.querySelector("#override-referer").checked,
