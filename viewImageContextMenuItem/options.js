@@ -35,7 +35,7 @@ function saveOptions(event) {
     "shift-left-click-action": document.querySelector("#shift-left-click-action").value,
     "ctrl-shift-left-click-action": document.querySelector("#ctrl-shift-left-click-action").value,
     "middle-click-action": document.querySelector("#middle-click-action").value,
-    "action-key-view-image": cleanActionKey(document.querySelector("#action-key-view-audio").value),
+    "action-key-view-audio": cleanActionKey(document.querySelector("#action-key-view-audio").value),
     "action-key-view-image": cleanActionKey(document.querySelector("#action-key-view-image").value),
     "action-key-view-video": cleanActionKey(document.querySelector("#action-key-view-video").value)
   };
