@@ -13,6 +13,10 @@
 
 <form class="panel-section panel-section-formElements" id="options">
   <div class="browser-style section-option">
+    <input type="checkbox" id="show-view-audio" checked="checked" />
+    <label for="show-view-audio">Show View Audio</label>
+  </div>
+  <div class="browser-style section-option">
     <input type="checkbox" id="show-view-image" checked="checked" />
     <label for="show-view-image">Show View Image</label>
   </div>
@@ -73,6 +77,10 @@
       <option value="new-foreground-window">Open in new window</option>
       <option value="nothing">Do nothing</option>
     </select>
+  </div>
+  <div class="browser-style section-option">
+    <label class="block-label">View Audio Hotkey (leave blank for default)</label>
+    <input type="textbox" id="action-key-view-audio" />
   </div>
   <div class="browser-style section-option">
     <label class="block-label">View Image Hotkey (leave blank for default)</label>

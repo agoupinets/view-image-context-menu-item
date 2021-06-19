@@ -4,6 +4,7 @@ function loadOptions() {
   }
 
   browser.extension.getBackgroundPage().loadOptionsFromStorage().then((options) => {
+    document.querySelector("#show-view-audio").checked = options["show-view-audio"];
     document.querySelector("#show-view-image").checked = options["show-view-image"];
     document.querySelector("#show-view-video").checked = options["show-view-video"];
     document.querySelector("#override-referer").checked = options["override-referer"];
@@ -12,6 +13,7 @@ function loadOptions() {
     setSelectedOption("#shift-left-click-action", options["shift-left-click-action"]);
     setSelectedOption("#ctrl-shift-left-click-action", options["ctrl-shift-left-click-action"]);
     setSelectedOption("#left-click-action", options["left-click-action"]);
+    document.querySelector("#action-key-view-audio").value = options["action-key-view-audio"];
     document.querySelector("#action-key-view-image").value = options["action-key-view-image"];
     document.querySelector("#action-key-view-video").value = options["action-key-view-video"];
   }); 
@@ -24,6 +26,7 @@ function saveOptions(event) {
   }
 
   const options = {
+    "show-view-audio": document.querySelector("#show-view-audio").checked,
     "show-view-image": document.querySelector("#show-view-image").checked,
     "show-view-video": document.querySelector("#show-view-video").checked,
     "override-referer": document.querySelector("#override-referer").checked,
@@ -32,6 +35,7 @@ function saveOptions(event) {
     "shift-left-click-action": document.querySelector("#shift-left-click-action").value,
     "ctrl-shift-left-click-action": document.querySelector("#ctrl-shift-left-click-action").value,
     "middle-click-action": document.querySelector("#middle-click-action").value,
+    "action-key-view-audio": cleanActionKey(document.querySelector("#action-key-view-audio").value),
     "action-key-view-image": cleanActionKey(document.querySelector("#action-key-view-image").value),
     "action-key-view-video": cleanActionKey(document.querySelector("#action-key-view-video").value)
   };
