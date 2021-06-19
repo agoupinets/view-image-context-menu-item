@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "View Image Context Menu Item",
-  "version": "3.1",
+  "version": "3.2",
   "description": "Adds View Audio, View Image, and View Video to the context menu",
   "default_locale": "en-CA",
   "icons": {
