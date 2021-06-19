@@ -3,7 +3,7 @@ function loadOptions() {
     document.querySelector(selectId + " > option[value='" + value + "']").selected = true;
   }
 
-  browser.extension.getBackgroundPage().loadOptionsFromStorage().then((options) => {
+  browser.runtime.sendMessage({ getOptions: true }).then((options) => {
     document.querySelector("#show-view-audio").checked = options["show-view-audio"];
     document.querySelector("#show-view-image").checked = options["show-view-image"];
     document.querySelector("#show-view-video").checked = options["show-view-video"];
