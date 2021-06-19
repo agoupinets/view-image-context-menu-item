@@ -255,9 +255,16 @@ function processOptions(options) {
   window.options = options;
 }
 
+function loadOptionsFromStorageMessageListener(request, sender, sendResponse) {
+  if(request && request.getOptions === true) {
+    sendResponse(loadOptionsFromStorage());
+  }
+}
+
 createMenuItems();
 processOptions(window.DEFAULT_OPTIONS);
 loadOptionsFromStorage().then((options) => { processOptions(options); });
 browser.menus.onShown.addListener(handleContextMenuShow);
 browser.menus.onClicked.addListener(handleContextMenuItemClick);
 browser.storage.onChanged.addListener(handleStorageChange);
+browser.runtime.onMessage.addListener(loadOptionsFromStorageMessageListener);
