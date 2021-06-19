@@ -182,7 +182,7 @@ function processViewAction(info, tab, actionType) {
         browser.tabs.create({ url: destinationUrl, openerTabId: tab.id, active: false });
         break;
       case "new-foreground-window":
-        browser.windows.create({ url: destinationUrl, focused: true })
+        browser.windows.create({ url: destinationUrl, focused: true, incognito: tab.incognito });
         break;
     }
   }
@@ -234,7 +234,7 @@ function processViewActionLocalFile(info, tab, actionType) {
       case "new-foreground-window":
         browser.tabs.duplicate(tab.id, { active: false })
           .then(function (newTab) { 
-            browser.windows.create({ tabId: newTab.id, focused: true });
+            browser.windows.create({ tabId: newTab.id, focused: true, incognito: newTab.incognito });
             createListenerToRedirectTabToUrl(newTab.id, destinationUrl);
           });
         break;
