@@ -3,6 +3,7 @@ window.DEFAULT_OPTIONS = Object.freeze({
     "show-view-image": true,
     "show-view-video": true,
     "override-referer": true,
+    "override-accept": true,
     "left-click-action": "same-tab",
     "ctrl-left-click-action": "new-foreground-tab",
     "shift-left-click-action": "new-foreground-window",
@@ -93,11 +94,23 @@ function handleContextMenuItemClick(info, tab) {
     return;
   }
 
+  function getMediaType(info) {
+    switch(info.menuItemId) {
+      case "view-audio-context-menu-item":
+        return "audio";
+      case "view-image-context-menu-item":
+        return "image";
+      case "view-video-context-menu-item":
+        return "video";
+      default:
+        return null;
+    }
+  }
+
   function getActionOptionType(info) {
     const isMiddleClick = info.button === 1;
     const isShiftModifier = info.modifiers.indexOf("Shift") > -1;
     const isCtrlModifier = info.modifiers.indexOf("Ctrl") > -1;
-    let actionTypeOption;
     if (isMiddleClick) {
       return "middle-click-action";
     } else if(isShiftModifier && isCtrlModifier) {
@@ -115,38 +128,61 @@ function handleContextMenuItemClick(info, tab) {
     return url.match(/^file:\/\//gi) !== null;
   }
 
+  const mediaType = getMediaType(info);
   const actionType = window.options[getActionOptionType(info)];
   const isLocalFileLink = isFileScheme(info.pageUrl) && isFileScheme(tab.url);
 
   if(isLocalFileLink) {
     processViewActionLocalFile(info, tab, actionType);
   } else {
-    processViewAction(info, tab, actionType);
+    processViewAction(info, tab, actionType, mediaType);
   }
-
 }
 
-function processViewAction(info, tab, actionType) {
+function processViewAction(info, tab, actionType, mediaType) {
   function getRefererFromInfo(info) {
     return (info.pageUrl.match(/^[^\/]+:\/\/[^\/]+\//g) || [null])[0];
   }
 
-  function interceptRequestAndSetReferer(destinationUrl, refererUrl) {
+  function getAcceptValue(mediaType) {
+    switch(mediaType) {
+      case "audio":
+        return "audio/webm,audio/ogg,audio/wav,audio/*;q=0.9,application/ogg;q=0.7,video/*;q=0.6,*/*;q=0.5";
+      case "image":
+        return "image/avif,image/webp,*/*";
+      case "video":
+        return "video/webm,video/ogg,video/*;q=0.9,application/ogg;q=0.7,audio/*;q=0.6,*/*;q=0.5";
+      default:
+        return null;
+    }
+  }
+
+  function setHeader(headers, headerName, value) {
+    for (let header of headers) {
+      if (header.name.toLowerCase() === headerName.toLowerCase()) {
+        header.value = value;
+        return;
+      }
+    }
+    headers.push({ name: headerName, value: value });
+  }
+
+  function interceptRequestAndSetHeaders(destinationUrl, info, mediaType) {
+    const setReferer = window.options["override-referer"] === true;
+    const setAccept = window.options["override-accept"] === true;
+
     const listener = function(event) {
       browser.webRequest.onBeforeSendHeaders.removeListener(listener);
       return new Promise((resolve, reject) => {
-        let existingRefererHeader = null;
-        for (let header of event.requestHeaders) {
-          if (header.name.toLowerCase() === "referer") {
-            existingRefererHeader = header;
-            break;
-          }
+        if (setReferer) {
+          const refererUrl = getRefererFromInfo(info);
+          setHeader(event.requestHeaders, "Referer", refererUrl);
         }
-
-        if(existingRefererHeader != null) {
-          existingRefererHeader.value = refererUrl;
-        } else {
-          event.requestHeaders.push({ name: "Referer", value: refererUrl });
+        if (setAccept) {
+          const acceptValue = getAcceptValue(mediaType);
+          if (acceptValue !== null) {
+            setHeader(event.requestHeaders, "Accept", acceptValue);
+          }
         }
 
         resolve({ requestHeaders: event.requestHeaders });
@@ -160,17 +196,16 @@ function processViewAction(info, tab, actionType) {
     );
   }
 
-  function prepareForRequest(info) {
+  function prepareForRequest(info, mediaType) {
     const destinationUrl = info.srcUrl;
-    if (window.options["override-referer"] === true) {
-      const refererUrl = getRefererFromInfo(info);
-      interceptRequestAndSetReferer(destinationUrl, refererUrl);
+    if (window.options["override-referer"] === true || window.options["override-accept"] === true) {
+      interceptRequestAndSetHeaders(destinationUrl, info, mediaType);
     }
     return destinationUrl;
   }
 
-  function doAction(info, tab, actionType){
-    const destinationUrl = prepareForRequest(info);
+  function doAction(info, tab, actionType, mediaType){
+    const destinationUrl = prepareForRequest(info, mediaType);
     switch(actionType) {
       case "same-tab":
         browser.tabs.update(tab.id, { url: destinationUrl });
@@ -187,7 +222,7 @@ function processViewAction(info, tab, actionType) {
     }
   }
 
-  doAction(info, tab, actionType);
+  doAction(info, tab, actionType, mediaType);
 }
 
 // Firefox security policy blocks most file:// actions, so this code
