@@ -8,6 +8,7 @@ function loadOptions() {
     document.querySelector("#show-view-image").checked = options["show-view-image"];
     document.querySelector("#show-view-video").checked = options["show-view-video"];
     document.querySelector("#override-referer").checked = options["override-referer"];
+    document.querySelector("#override-accept").checked = options["override-accept"];
     setSelectedOption("#middle-click-action", options["middle-click-action"]);
     setSelectedOption("#ctrl-left-click-action", options["ctrl-left-click-action"]);
     setSelectedOption("#shift-left-click-action", options["shift-left-click-action"]);
@@ -30,6 +31,7 @@ function saveOptions(event) {
     "show-view-image": document.querySelector("#show-view-image").checked,
     "show-view-video": document.querySelector("#show-view-video").checked,
     "override-referer": document.querySelector("#override-referer").checked,
+    "override-accept": document.querySelector("#override-accept").checked,
     "left-click-action": document.querySelector("#left-click-action").value,
     "ctrl-left-click-action": document.querySelector("#ctrl-left-click-action").value,
     "shift-left-click-action": document.querySelector("#shift-left-click-action").value,
